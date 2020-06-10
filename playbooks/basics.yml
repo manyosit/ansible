@@ -1,0 +1,30 @@
+---
+- name: Ensure basic setup for nodes
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Add the user 'manyos' with a bash shell, appending the group 'sudo' to the user's groups
+      user:
+        name: manyos
+        shell: /bin/bash
+        groups: manyos
+        append: yes
+    
+    - name: Set authorized keys taken from url for user manyos
+      authorized_key:
+        user: manyos
+        state: present
+        key: https://raw.githubusercontent.com/manyosit/ansible/master/ssh-keys/manyos
+    
+    - name: Allow passwordless Sudo
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+    
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+      

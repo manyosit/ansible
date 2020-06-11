@@ -1,0 +1,25 @@
+[swarm]
+
+10.8.0.31
+10.8.0.32
+10.8.0.33
+10.8.0.35
+10.8.0.36
+10.8.0.37
+
+[kube]
+10.8.0.63
+10.8.0.64
+
+# Group of all server
+[all:children]
+swarm
+kube
+
+# All virtual servers
+[virtuals:children]
+kube
+
+# Variables for all server
+[all:vars]
+ansible_ssh_user=manyos

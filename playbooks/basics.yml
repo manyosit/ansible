@@ -1,6 +1,6 @@
 ---
-- name: Ensure basic setup for nodes
-  hosts: all
+- name: Ensure basic setup for clients
+  hosts: kube
   become: true
 
   tasks:
@@ -10,13 +10,13 @@
         shell: /bin/bash
         groups: manyos
         append: yes
-    
+
     - name: Set authorized keys taken from url for user manyos
       authorized_key:
         user: manyos
         state: present
         key: https://raw.githubusercontent.com/manyosit/ansible/master/ssh-keys/manyos
-    
+
     - name: Allow passwordless Sudo
       lineinfile:
         path: /etc/sudoers
@@ -24,7 +24,6 @@
         regexp: '^%sudo'
         line: '%sudo ALL=(ALL) NOPASSWD: ALL'
         validate: 'visudo -cf %s'
-    
+
     - name: Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
-      

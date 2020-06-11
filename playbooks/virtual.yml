@@ -1,0 +1,16 @@
+---
+- name: Ensure basic setup for virtual hosts
+  hosts: virtuals
+  become: true
+
+  tasks:
+
+    - name: Install guest agent
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'qemu-guest-agent']
+
+    - name: enable guest agent service
+      systemd:
+        name: qemu-guest-agent
+        state: started
+        enabled: True

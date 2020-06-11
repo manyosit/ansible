@@ -17,7 +17,7 @@ swarm
 kube
 
 # All virtual servers
-[virtuals:children]
+[virtual:children]
 kube
 
 # Variables for all server

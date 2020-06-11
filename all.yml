@@ -4,3 +4,8 @@
   become: yes
   roles:
     - role: basic
+
+- hosts: virtual
+  become: yes
+  roles:
+    - role: virtual

@@ -9,7 +9,7 @@
    - manyos
    - rhannemann
     
-- name: Set authorized keys taken from url for user manyos
+- name: Set authorized keys taken from url for admin user admin
   authorized_key:
     user: "{{ item }}"
     state: present

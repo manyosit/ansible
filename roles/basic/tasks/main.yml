@@ -1,29 +1,22 @@
 ---
-- name: Add the user 'manyos' with a bash shell, appending the group 'sudo' to the user's groups
+- name: Add the admin users with a bash shell, appending the group 'sudo' to the user's groups
   user:
-    name: manyos
+    name: {{item}}
     shell: /bin/bash
     groups: sudo
     append: yes
+  with_items:
+   - manyos
+   - rhannemann
     
 - name: Set authorized keys taken from url for user manyos
   authorized_key:
-    user: manyos
+    user: {{item}}
     state: present
-    key: https://raw.githubusercontent.com/manyosit/ansible/master/ssh-keys/manyos
-
-- name: Add the user 'rhannemann' with a bash shell, appending the group 'sudo' to the user's groups
-  user:
-    name: rhannemann
-    shell: /bin/bash
-    groups: sudo
-    append: yes
-    
-- name: Set authorized keys taken from url for user rhannemann
-  authorized_key:
-    user: rhannemann
-    state: present
-    key: https://raw.githubusercontent.com/manyosit/ansible/master/ssh-keys/rhannemann
+    key: https://raw.githubusercontent.com/manyosit/ansible/master/ssh-keys/{{item}}
+  with_items:
+   - manyos
+   - rhannemann
 
 - name: Allow passwordless Sudo
   lineinfile:

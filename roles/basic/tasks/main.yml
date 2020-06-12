@@ -1,7 +1,7 @@
 ---
 - name: Add the admin users with a bash shell, appending the group 'sudo' to the user's groups
   user:
-    name: {{item}}
+    name: "{{ item }}"
     shell: /bin/bash
     groups: sudo
     append: yes
@@ -11,9 +11,9 @@
     
 - name: Set authorized keys taken from url for user manyos
   authorized_key:
-    user: {{item}}
+    user: "{{ item }}"
     state: present
-    key: https://raw.githubusercontent.com/manyosit/ansible/master/ssh-keys/{{item}}
+    key: "https://raw.githubusercontent.com/manyosit/ansible/master/ssh-keys/{{ item }}"
   with_items:
    - manyos
    - rhannemann

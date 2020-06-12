@@ -13,4 +13,5 @@
 - hosts: kube
   become: yes
   roles:
-    - role: docker 
+    - role: docker
+    - role: kube

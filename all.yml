@@ -12,6 +12,8 @@
 
 - hosts: kube
   become: yes
+  vars:
+    master_ip: 10.8.0.65
   roles:
     - role: docker
     - role: kube

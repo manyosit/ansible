@@ -20,6 +20,10 @@
         - kubeadm 
         - kubectl
 
+  - name: check if kublet file exists
+    stat: 
+      path: /etc/default/kubelet
+
   - name: Configure node ip
     lineinfile:
       path: /etc/default/kubelet

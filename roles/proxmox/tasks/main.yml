@@ -1,0 +1,52 @@
+---
+
+- proxmox_kvm:
+    node: pier4
+    api_user: api@pve
+    api_password: password123
+    api_host: 10.8.0.34
+    # Clone VM with only source VM name
+    clone       : ubuntu-20.04   # The VM source
+    name        : zavala  # The target VM name
+    #full        : no
+    format      : qcow2
+    storage     : tank
+    cores       : 4
+    vcpus       : 2
+    timeout     : 500  # Note: The task can take a while. Adapt
+  register: create_result 
+
+- name: sleep for 10 seconds and continue with play
+  wait_for:
+    timeout: 10
+
+- name: change vm settings
+  proxmox_kvm:
+    node        : pier4
+    api_user    : api@pve
+    api_password: password123
+    api_host    : 10.8.0.34
+    name        : zavala
+    memory      : 2048
+    sockets     : 1
+    cores       : 2
+    update      : yes
+
+- name: sleep for 10 seconds and continue with play
+  wait_for:
+    timeout: 10
+
+- name: start vm
+  proxmox_kvm:
+    node        : pier4
+    api_user    : api@pve
+    api_password: password123
+    api_host    : 10.8.0.34
+    name        : zavala
+    state       : started
+  register: shell_result
+
+- debug:
+    var: shell_result
+- debug:
+    var: create_result

@@ -1,5 +1,9 @@
 ---
 
+- name: "set hostnames"
+  hostname:
+    name: "{{ inventory_hostname}}"
+
 - name: Install guest agent
   apt: name={{ item }} state=latest update_cache=yes
   loop: [ 'qemu-guest-agent']

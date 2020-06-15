@@ -1,1 +1,1 @@
-Repository is used for common playbooks
+Repository is used for common playbooks.

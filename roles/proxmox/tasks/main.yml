@@ -1,7 +1,7 @@
 ---
 
 - proxmox_kvm:
-    node: pier4
+    node: "{{ prox_host }}"
     api_user: api@pve
     api_password: password123
     api_host: 10.8.0.34
@@ -22,14 +22,14 @@
 
 - name: change vm settings
   proxmox_kvm:
-    node        : pier4
+    node        : "{{ prox_host }}"
     api_user    : api@pve
     api_password: password123
     api_host    : 10.8.0.34
     name        : zavala
     memory      : 2048
     sockets     : 1
-    cores       : 2
+    cores       : 10
     update      : yes
 
 - name: sleep for 10 seconds and continue with play
@@ -38,7 +38,7 @@
 
 - name: start vm
   proxmox_kvm:
-    node        : pier4
+    node        : "{{ prox_host }}"
     api_user    : api@pve
     api_password: password123
     api_host    : 10.8.0.34

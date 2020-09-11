@@ -1,6 +1,8 @@
 ---
 
 - hosts: proxmox
+  vars:
+    prox_host: dru
   gather_facts: false
   roles:
     - role: proxmox

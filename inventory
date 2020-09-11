@@ -6,7 +6,7 @@ pier3 ansible_host=10.8.0.33
 pier5 ansible_host=10.8.0.35
 pier6 ansible_host=10.8.0.36
 pier7 ansible_host=10.8.0.37
-pier8 ansible_host=10.8.0.71
+pier8 ansible_host=10.8.0.38
 
 [kube]
 master1 ansible_host=10.8.0.65

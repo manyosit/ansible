@@ -1,0 +1,8 @@
+---
+
+- hosts: opensprinkler
+  become: yes
+  roles:
+    - role: basic
+    - role: rpi-opensprinkler
+

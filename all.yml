@@ -10,6 +10,11 @@
   roles:
     - role: virtual
 
+- hosts: homeserver
+  become: yes
+  roles:
+    - role: docker
+
 - hosts: pier8
   become: yes
   roles:

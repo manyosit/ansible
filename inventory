@@ -1,30 +1,40 @@
 [swarm]
 
-pier1 ansible_host=10.8.0.31
 pier3 ansible_host=10.8.0.33
 pier5 ansible_host=10.8.0.35
 pier6 ansible_host=10.8.0.36
 pier7 ansible_host=10.8.0.37
-pier8 ansible_host=10.8.0.38
+#pier8 ansible_host=10.8.0.38
 
 [homeserver]
 homepier ansible_host=192.168.0.101
 
 [kube]
 master1 ansible_host=10.8.0.65
-node1 ansible_host=10.8.0.66
 
 [proxmox]
-10.8.0.31
+10.8.0.37
 
 # Group of all server
 [all:children]
 swarm
 kube
+rancherprod
+
+[rancher]
+rancher1 ansible_host=10.8.0.63
+rancher-w1 ansible_host=10.8.0.64
+rancher-w2 ansible_host=10.8.0.66
+rancher-netcup ansible_host=202.61.199.17
+
+[rancherprod]
+rprod1 ansible_host=10.8.0.40
+rprod2 ansible_host=10.8.0.41
 
 # All virtual servers
 [virtual:children]
 kube
+rancherprod
 
 [opensprinkler]
 192.168.0.76
@@ -32,4 +42,3 @@ kube
 # Variables for all server
 [all:vars]
 ansible_ssh_user=manyos
-

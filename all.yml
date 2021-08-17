@@ -27,3 +27,14 @@
   roles:
     - role: docker
     - role: kube
+
+- hosts: rancher
+  become: yes
+  roles:
+    - role: docker
+
+- hosts: rancherprod
+  become: yes
+  roles:
+    - role: docker
+    - role: rancherprod

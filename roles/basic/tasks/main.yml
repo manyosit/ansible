@@ -17,6 +17,7 @@
   with_items:
    - manyos
    - rhannemann
+   - ansible
 
 - name: Allow passwordless Sudo
   lineinfile:

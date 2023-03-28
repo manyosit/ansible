@@ -8,3 +8,4 @@
     - role: basic
     - role: virtual
     - role: rancherprod
+    - role: docker

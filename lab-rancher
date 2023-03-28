@@ -1,0 +1,13 @@
+
+
+---
+
+- hosts: rancher
+  become: yes
+  roles:
+    - role: basic
+    - role: virtual
+    - role: rancher
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
